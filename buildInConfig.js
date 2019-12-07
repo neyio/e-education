@@ -1,1 +1,1 @@
-export const pkgPrefix = '@anylate';
+export const pkgPrefix = '@education';

@@ -1,7 +1,7 @@
 {
-  "name": "any-slate",
-  "version": "0.0.0",
-  "repository": "git@github.com:neyio/any-slate.git",
+  "name": "e-education",
+  "version": "0.0.1",
+  "repository": "git@github.com:neyio/e-education.git",
   "author": "Neyio <neyioqian@gmail.com>",
   "license": "MIT",
   "private": true,
