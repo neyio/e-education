@@ -13,12 +13,20 @@ export const manualMixUrl = (prefix, url = false) => (method) => {
 				method
 			};
 };
+
 export const METHODS = {
 	DESTROY: 'delete', // 删除
 	GET: 'get', // 获取
 	CREATE: 'post', // 创建
 	UPDATE: 'put', // 更新
 	SHOW: 'get' // 获取指定数据
+};
+
+export const initMethods = (key, value) => {
+	if (METHODS[key]) METHODS[key] = value;
+	else {
+		console.warn(`${key} is not exsists in ${METHODS}`);
+	}
 };
 
 export const apiMapToRouteMapAdapter = (apis) => {
@@ -96,20 +104,20 @@ export const apiMapToRouteMapAdapter = (apis) => {
 // );
 
 /**
- * 系统路由表
+ * 系统路由表,测试数据如下
+ * let defaultRouteMap = {
+ * 	problem: { ...generateRestfullRoutes('problem') },
+ *	statistics: {
+ *		problem: manualMixUrl('/api/statistics', 'problem')('get')
+ *	},
+ *	post: {
+ *		...generateRestfullRoutes('post'),
+ *		comment: {
+ *			...generateRestfullRoutes('post.comment')
+ *		}
+ *	 }
  */
-let defaultRouteMap = {
-	problem: { ...generateRestfullRoutes('problem') },
-	statistics: {
-		problem: manualMixUrl('/api/statistics', 'problem')('get')
-	},
-	post: {
-		...generateRestfullRoutes('post'),
-		comment: {
-			...generateRestfullRoutes('post.comment')
-		}
-	}
-};
+let defaultRouteMap = {};
 
 export const routeMap = {
 	merge(map, concatValues = (_a, _b, r) => r) {

@@ -1,13 +1,12 @@
 # `restful-api-map`
 
-> TODO: description
+> education restful-api-map 工具，用于快速生成可以访问的链接
 
 ## Usage
 
-```
-const restfulApiMap = require('restful-api-map');
-
-// 见下方示例
+### 定义路由表
+```js
+apis.js
 export default {
   auth: {
     restful: false,
@@ -29,6 +28,28 @@ export default {
     },
   },
 };
+```
+### 具体使用
 
+```js
+import restfulApiMap, { routeMap } from '@education/restful-api-map';
+import apis from './apis';
 
+console.log('routeMap===>', routeMap.get());
+let request = restfulApiMap(axios);
+request('post.comment.create', { postId: 1 }, { title: 'shit' });
+routeMap.reset(apis);
+request = restfulApiMap(axios);
+request('post.comment.create', { postId: 1 }, { title: 'shit' });
+routeMap.merge({
+	post: {
+		restful: true,
+		comment: {
+			restful: true
+		}
+	}
+});
+request = restfulApiMap(axios);
+request('post.comment.create', { postId: 1 }, { title: 'shit' });
+console.log('final=====>', routeMap.get());
 ```
