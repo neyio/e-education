@@ -1,0 +1,31 @@
+{
+  "name": "@education/restful-api-map",
+  "version": "0.0.1-alpha.1",
+  "description": "> TODO: description",
+  "author": "Neyio <neyioqian@gmail.com>",
+  "homepage": "https://github.com/neyio/e-education#readme",
+  "license": "MIT",
+  "main": "lib/restful-api-map.js",
+  "module": "lib/restful-api-map.es.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib", "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neyio/e-education.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/neyio/e-education/issues"
+  },
+  "dependencies": {
+    "path-to-regexp": "^3.0.0",
+    "ramda": "^0.26.1"
+  }
+}

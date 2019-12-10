@@ -38,7 +38,6 @@ const exceptExcludedRoutes = (input) => {
 };
 
 const routesMixins = (options = routes) => {
-	console.log('TCL: routesMixins -> options', options);
 	const {
 		login = '/login',
 		resetPassword = '/reset-password',
@@ -120,7 +119,8 @@ const RBAC = ({ routes }) => {
  */
 export default function({ routes, excluded }) {
 	const generateRoutes = routesMixins({ ...routes, excluded });
-	console.log('TCL: generateRoutes', generateRoutes);
-
+	console.groupCollapsed('RBAC ROUTES');
+	console.log('TCL: generateRoutes===>', generateRoutes);
+	console.groupEnd('RBAC ROUTES');
 	return <RBAC routes={generateRoutes} />;
 }

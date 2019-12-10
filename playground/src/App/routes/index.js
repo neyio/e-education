@@ -11,13 +11,9 @@ const AuthedRouteContainer = PrivateRoute();
 const { Router, Route, Redirect } = router;
 
 function Entrance(props) {
-	const { history, app, user } = props;
-	console.log('TCL: Entrance -> app', app);
-	console.log('TCL: Entrance -> history', history);
-	console.log('TCL: Entrance -> user', user);
+	const { history,  user } = props; // app, <Route path="/test" component={Test(app)} /> 
 	const { auth } = user;
 	const { isAuthenticated } = auth;
-	console.log('TCL: Entrance -> isAuthenticated', isAuthenticated);
 	return (
 		<Router history={history}>
 			<BaseLayout>

@@ -26,7 +26,6 @@ export default function configure(
 		...persistConfigOptions
 	};
 	const persistEnhancer = () => (createStore) => (reducer, initialState, enhancer) => {
-		console.log('TCL: persistEnhancer -> start');
 		const store = createStore(reducer, initialState, enhancer);
 		const persist = persistStore(store, null, callback(store));
 

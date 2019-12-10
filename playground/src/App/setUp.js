@@ -26,7 +26,7 @@ export default function setUp(
 	const { persistEnhancer, persistConfig, persistReducer } = configure({ ...persistOptions });
 	app = dva({
 		initialState: {},
-		onAction: createLogger(),
+		onAction: createLogger({ collapsed: true }),
 		onError(e) {
 			message.error(e.message, 3);
 		},
