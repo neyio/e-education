@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { NAMESPACE as UserNamespace, ACTIONS as UserActions } from './user';
 import restfulApiMap, { routeMap } from '@education/restful-api-map'; // check package readme.md to know useage
 import apis from '../api';
@@ -8,6 +9,7 @@ export const ACTIONS = {
 	INIT_SUBSCRIPTION: 'initSubscription',
 	RESET_REQUEST_CREATOR: 'resetRequestCreator'
 };
+
 const generateRouteMap = routeMap.reset(apis);
 console.groupCollapsed('ROUTE_MAP:[INIT]');
 console.log(generateRouteMap);
@@ -18,11 +20,13 @@ export default {
 	state: {
 		request: null,
 		restfulApiRequest: null,
-		routeMap: generateRouteMap
+		routeMap: generateRouteMap,
+		ACTIONS
 	},
 	effects: {
 		*[ACTIONS.WATCH_USER_AUTH_ACTIONS](_, { take, put, select }) {
 			let setAxiosHeadersInterceptor = null;
+
 			while (true) {
 				const { type, payload } = yield take([
 					`${UserNamespace}/${UserActions.LOGIN}`,
@@ -45,6 +49,7 @@ export default {
 				if (type === `${UserNamespace}/${UserActions.LOGIN}`) {
 					if (!payload.isAuthenticated) {
 						console.warn('ignore login action,please check if var(isAuthenticated) is true  ');
+
 						continue;
 					}
 					const instance = axios.create();

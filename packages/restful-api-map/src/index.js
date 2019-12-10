@@ -134,6 +134,9 @@ export const routeMap = {
 	set(key, value) {
 		defaultRouteMap[key] = apiMapToRouteMapAdapter(value);
 		return defaultRouteMap;
+	},
+	check() {
+		// createRequest(_, void 0, (_, options) => {});
 	}
 };
 
@@ -193,6 +196,7 @@ const createRequest = (
 		return creator(RequestCreator, { url: mixedUrl, method, ...data, ...extra });
 	} else {
 		console.error('请检查', keyChain, '是否存在在路由表上', routeMap);
+		// throw new Error(keyChain)
 	}
 };
 

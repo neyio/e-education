@@ -1,11 +1,15 @@
+export const NAMESPACE = 'system';
+export const ACTIONS = {
+	SET_REDUX_PERSIST_RECOVER: 'setReduxPersistRecover'
+};
 export default {
-	namespace: 'system',
+	namespace: NAMESPACE,
 	state: {
 		isReduxPersistRecover: false
 	},
 	effects: {},
 	reducers: {
-		setReduxPersistRecover(state, { payload }) {
+		[ACTIONS.SET_REDUX_PERSIST_RECOVER](state, { payload }) {
 			state.isReduxPersistRecover = payload;
 		}
 	}

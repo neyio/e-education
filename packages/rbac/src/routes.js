@@ -11,6 +11,7 @@ const { Route, Switch } = router;
 
 export const routes = {
 	login: '/login',
+	logout: '/logout',
 	resetPassword: '/reset-password',
 	register: '/register',
 	profile: '/profile',
@@ -40,6 +41,7 @@ const exceptExcludedRoutes = (input) => {
 const routesMixins = (options = routes) => {
 	const {
 		login = '/login',
+		logout = '/logout',
 		resetPassword = '/reset-password',
 		register = '/register',
 		profile = '/profile',
@@ -52,6 +54,11 @@ const routesMixins = (options = routes) => {
 			path: login,
 			component: Login,
 			excluded: excluded.login || excluded[login]
+		},
+		{
+			path: logout,
+			component: Login,
+			excluded: excluded.logout || excluded[logout]
 		},
 		{
 			path: resetPassword,

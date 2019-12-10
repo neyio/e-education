@@ -6,7 +6,7 @@ const { useHistory } = router;
 const compareUrl = (a, b) => {
 	return a === b;
 };
-function BaseLayout({ children, user }) {
+function BaseLayout({ children, user, ...props }) {
 	const history = useHistory();
 	useEffect(
 		() => {
