@@ -7,7 +7,19 @@ import Base from './components/Profile/Base';
 import Account from './components/Profile/Account';
 
 const needImplementApi = {
-	rbac: [ 'login', 'profile', 'profile.account' ]
+	rbac: {
+		restful: false,
+		post: {
+			restful: true,
+			comment: {
+				restful: true
+			}
+		},
+		urls: {
+			login: [ '/login', 'post' ],
+			logout: [ '/logout', 'post' ]
+		}
+	}
 };
 
 export { needImplementApi, Login, ResetPassword, Register, Profile, Base, Account, routes, RBACRouter as default };

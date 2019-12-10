@@ -1,5 +1,5 @@
 import pathToRegexp from 'path-to-regexp';
-import { pickAll, omit, mergeDeepWithKey } from 'ramda';
+import { pickAll, filter, omit, mergeDeepWithKey, forEachObjIndexed, equals } from 'ramda';
 
 //使用方法见 96行
 export const manualMixUrl = (prefix, url = false) => (method) => {
@@ -56,7 +56,7 @@ export const apiMapToRouteMapAdapter = (apis) => {
 						console.error('错误的输入', prefixPath, 'key为', key, '必须为[url,method]或{url,method}');
 						return { ...pre };
 					}
-					if (typeof value === 'object' && value instanceof Array) {
+					if (typeof value === 'object' && Array.isArray(value)) {
 						const [ url = '', method = 'get' ] = value;
 						route = {
 							[key]: {
@@ -135,8 +135,40 @@ export const routeMap = {
 		defaultRouteMap[key] = apiMapToRouteMapAdapter(value);
 		return defaultRouteMap;
 	},
-	check() {
-		// createRequest(_, void 0, (_, options) => {});
+	check(needImplementApi) {
+		console.groupCollapsed('CHECK API_MAP');
+		let outPuts = {};
+		const coverageRight = (checkedObj, obj = {}, _path = []) => {
+			forEachObjIndexed((value, key) => {
+				const _keyChain = _path.concat(key).join('.');
+				if (typeof value === 'object') {
+					if (!checkedObj[key]) {
+						return (outPuts[_keyChain] = false);
+					} else {
+						if (Array.isArray(value)) {
+							return (outPuts[_keyChain] = equals(checkedObj[key], value));
+						} else {
+							// when met a route(which has url & method)
+							if (value.method && value.url) {
+								return (outPuts[_keyChain] = equals(checkedObj[key], value));
+							}
+							return coverageRight(checkedObj[key], value, _path.concat(key));
+						}
+					}
+				} else {
+					const _ans = equals(checkedObj[key], value);
+					if (!_ans) console.warn(`${_keyChain} has not been implemented yet!`);
+					return (outPuts[_keyChain] = _ans);
+				}
+			}, obj);
+		};
+		const current = apiMapToRouteMapAdapter(needImplementApi);
+		coverageRight(defaultRouteMap, current, []);
+		const ans = { unpassed: filter((value) => !value, outPuts), passed: filter((value) => !!value, outPuts) };
+		console.log(ans);
+		console.groupEnd('CHECK API_MAP');
+		console.error('please check these api which have not been implemented.', ans.unpassed);
+		return ans;
 	}
 };
 
@@ -196,7 +228,7 @@ const createRequest = (
 		return creator(RequestCreator, { url: mixedUrl, method, ...data, ...extra });
 	} else {
 		console.error('请检查', keyChain, '是否存在在路由表上', routeMap);
-		// throw new Error(keyChain)
+		throw new Error(keyChain);
 	}
 };
 

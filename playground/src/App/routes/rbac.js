@@ -1,7 +1,13 @@
 import RBACRouter, { Login, routes, needImplementApi } from '@education/rbac';
 import { routeMap } from '@education/restful-api-map';
-// routeMap.check(needImplementApi);
+
+setTimeout(() => {
+	const checked = routeMap.check(needImplementApi);
+	console.log('TCL: checked', checked);
+}, 100);
+
 export { routes, Login, needImplementApi };
+
 console.groupCollapsed('RBACRouter[INIT]');
 console.log('TCL: routes =>', routes);
 console.groupEnd('RBACRouter[INIT]');

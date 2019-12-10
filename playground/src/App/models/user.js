@@ -58,6 +58,7 @@ export default {
 			dispatch({
 				type: ACTIONS.AUTO_LOGIN
 			});
-		}
+		},
+
 	}
 };
