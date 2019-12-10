@@ -1,13 +1,11 @@
 import React from 'react';
-import dva, { router } from 'dva';
+import dva from 'dva';
 import createLoading from 'dva-loading';
 import injectImmer from 'dva-immer';
 import { message } from 'antd';
 import { createLogger } from 'redux-logger';
 import configure from './redux/config';
-import Example from './pages/Test';
-import Test from '@education/test';
-const { Router, Route } = router;
+import Router from './routes';
 
 let store = null;
 let View = null;
@@ -48,10 +46,6 @@ export default function setUp(
 		})
 	);
 	app.use(injectImmer());
-	// if (store && View) {
-	// 	callback(View);
-	// 	return { View, store, dispatch: store.dispatch, app };
-	// }
 
 	if (plugins && Array.isArray(plugins)) {
 		plugins.forEach((plugin) => {
@@ -62,15 +56,7 @@ export default function setUp(
 	models.forEach((model) => app.model(model));
 
 	app.router(({ history }) => {
-		return (
-			<Router history={history}>
-				<div>
-					<h1>shit bar</h1>
-					<Route path="/" component={Example} />
-					<Route path="/test" component={Test(app)} />
-				</div>
-			</Router>
-		);
+		return <Router history={history} app={app} />;
 	});
 	View = app.start();
 	store = app._store;

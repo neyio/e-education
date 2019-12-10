@@ -11,7 +11,6 @@ const Test = (app) => {
 		component: () => main
 	});
 	const render = (props) => {
-		console.log('test props=>', props.user);
 		const { path } = useRouteMatch();
 		return (
 			<React.Fragment>

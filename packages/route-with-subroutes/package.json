@@ -1,0 +1,34 @@
+{
+  "name": "@education/route-with-subroutes",
+  "version": "0.0.1-alpha.1",
+  "description": "> TODO: description",
+  "author": "Neyio <neyioqian@gmail.com>",
+  "homepage": "https://github.com/neyio/e-education#readme",
+  "license": "MIT",
+  "main": "lib/route-with-subroutes.js",
+  "module": "lib/route-with-subroutes.es.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib", "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neyio/e-education.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/neyio/e-education/issues"
+  },
+  "peerDependencies": {
+    "dva": "^2.6.0-beta.19",
+    "dva-immer": "^0.4.18",
+    "dva-loading": "^3.0.19",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}

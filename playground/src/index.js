@@ -32,9 +32,7 @@ setTimeout(() => {
 	dispatch({
 		type: 'user/setUser',
 		payload: {
-			auth: {
-				world: 'yes!'
-			}
+			isAuthenticated: true
 		}
 	});
 }, 1000);

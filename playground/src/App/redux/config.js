@@ -1,6 +1,15 @@
 import { persistStore, persistReducer } from 'redux-persist'; //persistReducer,
 import storage from 'redux-persist/lib/storage';
-import { truthlyObject } from '../../utils';
+
+const truthlyObject = (obj) => {
+	return Object.entries(obj).reduce((before, [ key, value ]) => {
+		if (key && value) {
+			before[key] = value;
+		}
+		return { ...before };
+	}, {});
+};
+
 export default function configure(
 	{
 		whitelist = [],

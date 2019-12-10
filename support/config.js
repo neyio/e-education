@@ -5,9 +5,11 @@
 */
 
 import factory from './factory';
-// import any from '../packages/any/package.json';
 import test from '../packages/test/package.json';
+import themes from '../packages/themes/package.json';
+import rbac from '../packages/rbac/package.json';
+import routeWithSubroutes from '../packages/route-with-subroutes/package.json';
 // configurations = [...factory(any),... ]
-const configurations = [ ...factory(test) ];
+const configurations = [ ...factory(test), ...factory(themes), ...factory(rbac), ...factory(routeWithSubroutes) ];
 
 export default configurations;

@@ -3,16 +3,12 @@ import { connect } from 'dva';
 const Example = (props) => {
 	useEffect(
 		() => {
-			console.log('request', props.user);
-
-			return () => {
-				console.log('clean');
-			};
+			return () => {};
 		},
 		[ props ]
 	);
 
-	return <div>hello world{props.user.info.baba}</div>;
+	return <div>hello world {props.user.auth.isAuthenticated ? 'online' : 'offline'}</div>;
 };
 export default connect(({ user }) => {
 	return { user };

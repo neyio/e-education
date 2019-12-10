@@ -1,5 +1,5 @@
 const auth = {
-	logined: false,
+	isAuthenticated: false,
 	lastLoginedTime: null
 };
 export default {
@@ -13,7 +13,6 @@ export default {
 	},
 	effects: {
 		*setUser(action, effects) {
-			console.log('TCL: *setUser -> args', action, effects);
 			const { payload } = action;
 			const { put } = effects;
 			yield put({
@@ -24,6 +23,7 @@ export default {
 	},
 	reducers: {
 		update(state, { payload }) {
+			state.auth = { ...state.auth, ...payload };
 			state.auth.k[2] = 'baba';
 			state.auth.k[1].boy[1] = 'the fuck';
 		}

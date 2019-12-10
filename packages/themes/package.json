@@ -1,0 +1,30 @@
+{
+  "name": "@education/themes",
+  "version": "0.0.1-alpha.1",
+  "description": "> TODO: description",
+  "author": "Neyio <neyioqian@gmail.com>",
+  "homepage": "https://github.com/neyio/e-education#readme",
+  "license": "MIT",
+  "main": "lib/themes.js",
+  "module": "lib/themes.es.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib", "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neyio/e-education.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/neyio/e-education/issues"
+  }
+}
