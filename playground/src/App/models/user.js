@@ -24,8 +24,6 @@ export default {
 	reducers: {
 		update(state, { payload }) {
 			state.auth = { ...state.auth, ...payload };
-			state.auth.k[2] = 'baba';
-			state.auth.k[1].boy[1] = 'the fuck';
 		}
 	}
 };
