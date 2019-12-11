@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect, router } from 'dva';
 import RBACRouter, { routes as RBACRoutes, Login } from './rbac';
-import CoreContainerLayout from '../layouts/CoreContainer';
+import CoreContainerLayout from '../layouts/CoreContainer/index';
 import { PrivateRoute } from './helpers';
 import Example from '../pages/Test';
 

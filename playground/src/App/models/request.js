@@ -116,7 +116,7 @@ export default {
 	subscriptions: {
 		[ACTIONS.INIT_SUBSCRIPTION]({ dispatch }) {
 			dispatch({
-				type: 'watchUserAuthActions'
+				type: ACTIONS.WATCH_USER_AUTH_ACTIONS
 			});
 		}
 	}

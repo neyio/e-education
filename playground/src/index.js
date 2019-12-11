@@ -6,7 +6,8 @@ import user, { NAMESPACE as UserNamespace } from './App/models/user';
 import system, { ACTIONS as SystemActions, NAMESPACE as SystemNamespace } from './App/models/system';
 import request from './App/models/request';
 import configuare from './App/models/config';
-
+import layout from './App/models/layout';
+import './App/less/index.less';
 const render = (store) => (App) => {
 	ReactDOM.render(<App />, document.getElementById('root'));
 	serviceWorker.unregister(); // Learn more about service workers: https://bit.ly/CRA-PWA
@@ -14,7 +15,7 @@ const render = (store) => (App) => {
 
 const { dispatch } = setUp(
 	{
-		models: configuare(user, system, request),
+		models: configuare(user, system, request, layout),
 		persistOptions: {
 			whitelist: [ UserNamespace ],
 			blacklist: [ SystemNamespace ],

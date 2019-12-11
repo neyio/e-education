@@ -22,10 +22,18 @@ export const componentClassName = {
 	DragHandler: 'e-drag-handler',
 	Link: 'e-link',
 	Code: 'e-code',
-	Embed: 'e-embed'
+	Embed: 'e-embed',
+	Logo: 'e-logo',
+	Header: 'e-header'
 };
 
 export const theme = {
 	base: 'e-theme-base',
 	dark: 'e-theme-dark'
+};
+
+export const commonClassName = {
+	unShown: 'e-displaynone',
+	noPadding: 'e-pd-0',
+	noMargin: 'e-mg-0'
 };

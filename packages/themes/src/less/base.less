@@ -1,4 +1,5 @@
 @import './component.less';
+@import './common.less';
 @import './dark.less';
 
 // fontSize
@@ -33,6 +34,7 @@
 @theme-color-primary-lighten: var(--theme-color, #2275ff80); //lighten(@theme-color-primary,40%);
 @theme-color-helper: var(--theme-color-helper, #6c6c6c);
 @theme-color-helper-lighten: var(--theme-color-helper, #6c6c6c80);
+@theme-color-opposite: var(--theme-color-opposite, #001259);
 
 @theme-color-warn: var(--theme-color-warn, #f77700);
 @theme-color-info: var(--theme-color-info, #6c6c6c40);
@@ -57,11 +59,20 @@
 @font-weight-thin: 300;
 @font-weight-heavy: 600;
 
+@heading-color: rgba(0, 0, 0, 0.85); // 标题色
+@text-color: rgba(0, 0, 0, 0.65); // 主文本色
+@text-color-secondary: rgba(0, 0, 0, 0.45); // 次文本色
+@disabled-color: rgba(0, 0, 0, 0.25); // 失效色
+@border-radius-base: 4px; // 组件/浮层圆角
+@border-color-base: #d9d9d9; // 边框色
+@box-shadow-base: var(--theme-box-shadow, 0 2px 8px rgba(0, 0, 0, 0.15)); // 浮层阴影
+
 :root {
   --theme-color-primary: #2275ff;
   --theme-color-primary-lighten: #2275ff80;
   --theme-color-helper: #6c6c6c;
   --theme-color-helper-lighten: #6c6c6c86;
+  --theme-color-opposite: #001259;
 
   --theme-color-warn: #f77700;
   --theme-color-info: #6c6c6c40;
@@ -78,6 +89,8 @@
   --theme-color-light: #f5f5f5;
   --theme-color-white: #fff;
   --theme-color-container-primary: #eee;
+
+  --theme-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 body,
@@ -94,14 +107,15 @@ body,
   .@{ThemeBase} {
     padding-left: 0;
     margin: 2rem;
-    font-size: @font-size-normal;
+    font-size: @font-size-small;
     text-align: left;
     overflow: visible;
     background: @theme-color-white;
     position: relative;
 
     //base-reset
-    blockquote p {
+    blockquote,
+    p {
       font-weight: 600;
       margin-left: 0;
     }
@@ -117,9 +131,9 @@ body,
       color: @theme-color-title;
     }
 
-    ol,
-    p,
-    ul {
+    & > ol,
+    & > p,
+    & > ul {
       line-height: @font-size-base*1.2;
       word-spacing: 0.05rem;
       color: @theme-color-text-primary;
@@ -320,5 +334,32 @@ body,
       background: @theme-color-light;
       box-shadow: 0 10px 30px 0 @theme-color-light;
     }
+  }
+  .@{Logo} {
+    height: @font-size-normal*2;
+    color: @theme-color-opposite;
+    margin: @margin-extra-large;
+    font-size: @font-size-normal;
+    word-wrap: break-word;
+    font-weight: bold;
+    overflow: hidden;
+    line-height: @font-size-normal*2;
+  }
+
+  .@{Header} {
+    background-color: var(--theme-color-white, #fff);
+    padding: 0 @padding-extra-large*1.5;
+    user-select: none;
+  }
+  .@{unShown} {
+    display: none;
+    opacity: 0;
+    z-index: -100;
+  }
+  .@{noPadding} {
+    padding: 0;
+  }
+  .@{noMargin} {
+    margin: 0;
   }
 }
