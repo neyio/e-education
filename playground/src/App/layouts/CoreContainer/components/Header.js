@@ -3,9 +3,9 @@ import { PageHeader, Divider, Button } from 'antd';
 import { css } from 'emotion';
 import { APP_NAME, APP_NAME_ENG } from '../../../config';
 
-const Header = () => {
+const Header = React.forwardRef((props, ref) => {
 	return (
-		<div>
+		<div ref={ref} className={props.className}>
 			<PageHeader
 				className={css`border-bottom: 1px solid #eee;`}
 				onBack={() => {}}
@@ -26,5 +26,5 @@ const Header = () => {
 			/>
 		</div>
 	);
-};
+});
 export default Header;

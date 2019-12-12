@@ -7,7 +7,7 @@ export const ACTIONS = {
 const TEMPLATE = {
 	ALL_SHOWN: {
 		...PARTS.reduce((acc, i) => {
-			return { ...acc, [i]: true };
+			return { ...acc, [i]: false };
 		}, {})
 	},
 	ONLY_CONTAINER: {

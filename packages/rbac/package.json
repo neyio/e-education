@@ -28,7 +28,8 @@
     "url": "https://github.com/neyio/e-education/issues"
   },
   "dependencies": {
-    "@education/route-with-subroutes": "^0.0.1-alpha.1"
+    "@education/route-with-subroutes": "^0.0.1-alpha.1",
+    "emotion": "^10.0.23"
   },
   "peerDependencies": {
     "dva": "^2.6.0-beta.19",

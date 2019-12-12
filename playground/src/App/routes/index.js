@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect, router } from 'dva';
+import { pick } from 'ramda';
 import RBACRouter, { routes as RBACRoutes, Login } from './rbac';
 import CoreContainerLayout from '../layouts/CoreContainer/index';
 import { PrivateRoute } from './helpers';
@@ -15,9 +16,10 @@ function Entrance(props) {
 	const { auth } = user;
 	const { isAuthenticated } = auth;
 	console.warn('TCL: Entrance -> isAuthenticated', isAuthenticated);
+	const excludedRoutes = Object.values(pick([ 'login', 'register', 'resetPassword' ], RBACRouter));
 	return (
 		<Router history={history}>
-			<CoreContainerLayout>
+			<CoreContainerLayout authOptions={{ excludedRoutes }}>
 				{isAuthenticated ? (
 					<AuthedRouteContainer path="/" auth={auth}>
 						<Route path="/" exact component={Example} />
@@ -26,6 +28,7 @@ function Entrance(props) {
 				) : (
 					<Redirect to={{ pathname: RBACRoutes.login }} />
 				)}
+				{/* <RBACRouter routes={RBACRoutes} excluded={{ [RBACRoutes.profile]: true }} /> */}
 				<Route path={RBACRoutes.login} component={Login} />
 			</CoreContainerLayout>
 		</Router>
