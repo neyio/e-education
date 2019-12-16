@@ -495,7 +495,16 @@ module.exports = function(webpackEnv) {
 									loader: 'css-loader' // translates CSS into CommonJS
 								},
 								{
-									loader: 'less-loader' // compiles Less to CSS
+									loader: 'less-loader', // compiles Less to CSS
+									options: {
+										modifyVars: {
+											hack: `true; @import "${path.join(
+												__dirname,
+												'../src/App/less'
+											)}/custom.less";` // Override with less file
+										},
+										javascriptEnabled: true
+									}
 								}
 							]
 						},

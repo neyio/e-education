@@ -1,0 +1,3 @@
+*/*.test.js
+/playground/scripts
+/playground/config

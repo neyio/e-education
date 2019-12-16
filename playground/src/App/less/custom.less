@@ -1,0 +1,21 @@
+@import '~antd/dist/antd.less'; // 引入官方提供的 less 样式入口文件
+@primary-color: #37485b;
+
+.ant-menu-item {
+  transition: all 0.4s;
+  &:hover {
+    background: @primary-color;
+    color: #fff;
+    transform: translate3d(1, 1, 1);
+  }
+  &:first-child {
+    margin-top: 0;
+  }
+}
+.ant-menu-item-selected {
+  color: #fff;
+  &:hover {
+    color: #fff;
+    background: @primary-color;
+  }
+}

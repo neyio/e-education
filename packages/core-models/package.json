@@ -1,12 +1,12 @@
 {
-  "name": "@education/rbac",
+  "name": "@education/core-models",
   "version": "0.0.1-alpha.1",
   "description": "> TODO: description",
   "author": "Neyio <neyioqian@gmail.com>",
   "homepage": "https://github.com/neyio/e-education#readme",
   "license": "MIT",
-  "main": "lib/rbac.js",
-  "module": "lib/rbac.es.js",
+  "main": "lib/core-models.js",
+  "module": "lib/core-models.es.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -28,15 +28,7 @@
     "url": "https://github.com/neyio/e-education/issues"
   },
   "dependencies": {
-    "@education/route-with-subroutes": "^0.0.1-alpha.1",
-    "emotion": "^10.0.23"
-  },
-  "peerDependencies": {
-    "dva": "^2.6.0-beta.19",
-    "dva-immer": "^0.4.18",
-    "dva-loading": "^3.0.19",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "antd": "^3.26.0"
+    "@education/restful-api-map": "^0.0.1-alpha.1",
+    "axios": "^0.19.0"
   }
 }
