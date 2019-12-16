@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { connect, router } from 'dva';
 import { css } from 'emotion';
-import { routes as ROUTES } from '../routes';
+import { ROUTES } from '../constants/index';
 
 const { Link } = router;
 
@@ -68,19 +68,19 @@ const LoginForm = props => {
               valuePropName: 'checked',
               initialValue: true,
             })(<Checkbox>记住我</Checkbox>)}
-            <Link to={ROUTES.resetPassword} className="login-form-forgot">
+            <Link to={ROUTES.RESET_PASSWORD} className="login-form-forgot">
               忘记密码
             </Link>
           </span>
           <Button type="primary" htmlType="submit" className="login-form-button">
             登 录
           </Button>
-          或 <Link to={ROUTES.register}>注册</Link>
+          或 <Link to={ROUTES.REGISTER}>注册</Link>
         </Form.Item>
       </Form>
     </section>
   );
 };
 
-const WrappedLoginForm = Form.create({ name: 'normal_login_1' })(LoginForm);
-export default connect(null)(WrappedLoginForm);
+const WrappedLoginForm = Form.create({ name: 'normal_login' })(LoginForm);
+export default connect()(WrappedLoginForm);

@@ -4,11 +4,12 @@ import { connect, router } from 'dva';
 import { Layout, Menu, Affix, Icon, Row, Col } from 'antd';
 import '@education/themes/lib/index.css';
 import { cx, css } from 'emotion';
+import { Layout as LayoutModule } from '@education/core-models';
 import { commonClassName, theme as appThemeClassName, componentClassName } from '@education/themes';
 import ReduxedBreadcrumb from './components/ReduxedBreadcrumb';
 import CustomHeader from './components/Header';
-import { HEADER, SIDER } from '../../constants/layout';
 import { EXCLUDED_AUTH_ROUTES } from '../../config';
+const { CONSTANTS: { HEADER, SIDER } } = LayoutModule;
 const { Content, Footer, Sider } = Layout;
 
 const { SubMenu } = Menu;
@@ -28,6 +29,7 @@ function BaseLayout({ children, user, authOptions = {}, ...props }) {
 	const { layout: { shownParts = {}, theme = 'base' } } = props;
 	const { excludedRoutes = [] } = authOptions;
 	const appExcludedRoutes = (EXCLUDED_AUTH_ROUTES || []).concat(excludedRoutes);
+
 	const [ collapsed, setCollapsed ] = useState(false);
 	useEffect(
 		() => {
@@ -39,17 +41,17 @@ function BaseLayout({ children, user, authOptions = {}, ...props }) {
 					event.stopPropagation();
 				}
 				if (!user.auth.isAuthenticated) {
-					const hash = urlParse(newURL);
-					if (appExcludedRoutes.includes(hash)) return history.push('/login');
-					else {
+					const { hash } = urlParse(newURL);
+					const hashText = hash.replace(/^#{1}/, '');
+					if (!appExcludedRoutes.includes(hashText)) {
 						event.preventDefault();
 						event.stopPropagation();
+						return history.push('/login');
 					}
 				}
 			};
 			window.addEventListener('hashchange', onHashChange);
 			return () => {
-				console.log('BaseLayout rerender');
 				window.removeEventListener('hashchange', onHashChange);
 			};
 		},

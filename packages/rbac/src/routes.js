@@ -2,29 +2,19 @@ import React from 'react';
 import { router } from 'dva';
 import RouteWithSubroutes from '@education/route-with-subroutes';
 import Login from './components/Login';
+import Logout from './components/Logout';
 import ResetPassword from './components/RestPassword';
 import Register from './components/Register';
 import Profile from './components/Profile';
 import Account from './components/Profile/account';
 import Base from './components/Profile/Base';
+import { ROUTES } from './constants/index';
 
 const { Switch } = router;
-
-export const routes = {
-  login: '/login',
-  logout: '/logout',
-  resetPassword: '/reset-password',
-  register: '/register',
-  profile: '/profile',
-  base: '/profile/',
-  account: '/profile/account',
-  excluded: {},
-};
-
 const exceptExcludedRoutes = input => {
   if (Array.isArray(input)) {
     return input.reduce((acc, currentItem) => {
-      return currentItem.excluded
+      return currentItem.excluded && currentItem.path
         ? acc
         : acc.concat(
             currentItem.routes
@@ -39,61 +29,57 @@ const exceptExcludedRoutes = input => {
   return input;
 };
 
-const routesMixins = (options = routes) => {
-  const {
-    login = '/login',
-    logout = '/logout',
-    resetPassword = '/reset-password',
-    register = '/register',
-    profile = '/profile',
-    base = '/profile/',
-    account = '/profile/account',
-    excluded = {},
-  } = options;
+const routesMixins = (options = ROUTES) => {
+  const { EXCLUDED = {} } = options;
   return exceptExcludedRoutes([
     {
-      path: login,
+      path: options.LOGIN,
       component: Login,
-      excluded: excluded.login || excluded[login],
+      excluded: EXCLUDED.LOGIN || EXCLUDED[options.LOGIN],
     },
     {
-      path: logout,
-      component: Login,
-      excluded: excluded.logout || excluded[logout],
+      path: options.LOGOUT,
+      component: Logout,
+      excluded: EXCLUDED.LOGOUT || EXCLUDED[options.LOGOUT],
     },
     {
-      path: resetPassword,
+      path: options.RESET_PASSWORD,
       component: ResetPassword,
-      excluded: excluded.resetPassword || excluded[resetPassword],
+      excluded: EXCLUDED.RESET_PASSWORD || EXCLUDED[options.RESET_PASSWORD],
     },
     {
-      path: register,
+      path: options.REGISTER,
       component: Register,
-      excluded: excluded.register || excluded[register],
+      excluded: EXCLUDED.REGISTER || EXCLUDED[options.REGISTER],
     },
     {
-      path: profile,
+      path: options.PROFILE,
       component: Profile,
-      excluded: excluded.profile || excluded[profile],
+      excluded: EXCLUDED.PROFILE || EXCLUDED[options.PROFILE],
       routes: [
         {
-          path: base,
+          path: options.BASE,
           component: Base,
           exact: true,
-          excluded: excluded.base || excluded[base],
+          excluded: EXCLUDED.BASE || EXCLUDED[options.BASE],
         },
         {
-          path: account,
+          path: options.ACCOUNT,
           component: Account,
+          excluded: EXCLUDED.ACCOUNT || EXCLUDED[options.ACCOUNT],
           routes: [
             {
-              path: account,
+              path: options.ACCOUNT,
               exact: true,
-              component: Register,
+              component: () => {
+                return <div>account content</div>;
+              },
             },
             {
               path: '/profile/account/happy',
-              component: ResetPassword,
+              component: () => {
+                return <div>/profile/account/happy</div>;
+              },
             },
           ],
         },
@@ -102,7 +88,7 @@ const routesMixins = (options = routes) => {
   ]);
 };
 
-const RBAC = ({ routes }) => {
+const RbacContainer = ({ routes }) => {
   return (
     <React.Fragment>
       <Switch>
@@ -116,7 +102,7 @@ const RBAC = ({ routes }) => {
 
 /**
  *
- * RBAC mixin的路由
+ * RbacContainer mixin的路由
  * @export
  * @param {*} props
  *  {
@@ -132,8 +118,8 @@ const RBAC = ({ routes }) => {
 
 export default function({ routes, excluded }) {
   const generateRoutes = routesMixins({ ...routes, excluded });
-  console.groupCollapsed('RBAC ROUTES');
+  console.groupCollapsed('RbacContainer ROUTES');
   console.log('TCL: generateRoutes===>', generateRoutes);
-  console.groupEnd('RBAC ROUTES');
-  return <RBAC routes={generateRoutes} />;
+  console.groupEnd('RbacContainer ROUTES');
+  return <RbacContainer routes={generateRoutes} />;
 }

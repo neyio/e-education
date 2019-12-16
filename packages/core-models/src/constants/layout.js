@@ -5,4 +5,4 @@ export const SIDER = 'Sider';
 export const FOOTER = 'Footer';
 export const BREADCRUMB = 'Breadcrumb';
 export const THEME = 'Ttheme';
-export const PARTS = [ CONTAINER, HEADER, SIDER, FOOTER, BREADCRUMB ];
+export const PARTS = [CONTAINER, HEADER, SIDER, FOOTER, BREADCRUMB];

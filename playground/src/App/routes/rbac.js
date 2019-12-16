@@ -1,4 +1,4 @@
-import RBACRouter, { Login, routes, needImplementApi } from '@education/rbac';
+import RBACRouter, { Login, ROUTES, needImplementApi } from '@education/rbac';
 import { routeMap } from '@education/restful-api-map';
 
 setTimeout(() => {
@@ -6,10 +6,10 @@ setTimeout(() => {
 	console.log('TCL: checked', checked);
 }, 100);
 
-export { routes, Login, needImplementApi };
+export { ROUTES, Login, needImplementApi };
 
 console.groupCollapsed('RBACRouter[INIT]');
-console.log('TCL: routes =>', routes);
+console.log('TCL: routes =>', ROUTES);
 console.groupEnd('RBACRouter[INIT]');
 
 export default RBACRouter;

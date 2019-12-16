@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import CoreModels from '@education/core-models';
 import * as serviceWorker from './serviceWorker';
 import setUp from './App/setUp';
-import user, { NAMESPACE as UserNamespace } from './App/models/user';
-import system, { ACTIONS as SystemActions, NAMESPACE as SystemNamespace } from './App/models/system';
-import request from './App/models/request';
-import configuare from './App/models/config';
-import layout from './App/models/layout';
+import apis from './App/api/index';
 import './App/less/index.less';
+
+import configuare from './App/models/config';
+const { User, System, Layout, Request } = CoreModels;
+
+const { ACTIONS: SystemActions, NAMESPACE: SystemNamespace } = System;
+
+const { NAMESPACE: UserNamespace } = User;
+const { NAMESPACE: LayoutNamespace } = Layout;
+const { NAMESPACE: RequestNamespace } = Request;
+
 const render = (store) => (App) => {
 	ReactDOM.render(<App />, document.getElementById('root'));
 	serviceWorker.unregister(); // Learn more about service workers: https://bit.ly/CRA-PWA
@@ -15,7 +22,12 @@ const render = (store) => (App) => {
 
 const { dispatch } = setUp(
 	{
-		models: configuare(user, system, request, layout),
+		models: configuare([ UserNamespace, SystemNamespace, RequestNamespace, LayoutNamespace ])(
+			User.default(),
+			System.default(),
+			Request.default({ initialApis: apis }),
+			Layout.default()
+		),
 		persistOptions: {
 			whitelist: [ UserNamespace ],
 			blacklist: [ SystemNamespace ],
@@ -37,7 +49,7 @@ setTimeout(() => {
 	dispatch({
 		type: 'user/login',
 		payload: {
-			isAuthenticated: false,
+			isAuthenticated: true,
 			tokens: {
 				refreshToken: 1,
 				accessToken: 2
