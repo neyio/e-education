@@ -28,9 +28,11 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.3.0",
+    "husky": "^3.1.0",
     "lerna": "^3.19.0",
     "lodash.startcase": "^4.4.0",
     "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
     "react": "^16.12.0",
     "react-app-polyfill": "^1.0.4",
     "react-dev-utils": "^9.1.0",
@@ -56,5 +58,10 @@
   },
   "workspaces": [
     "packages/**"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
 }

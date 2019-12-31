@@ -13,7 +13,7 @@ export const ACTIONS = {
 const TEMPLATE = {
   ALL_SHOWN: {
     ...PARTS.reduce((acc, i) => {
-      return { ...acc, [i]: false };
+      return { ...acc, [i]: true };
     }, {}),
   },
   ONLY_CONTAINER: {

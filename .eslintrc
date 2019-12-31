@@ -1,4 +1,5 @@
 {
+  "root": true,
   "extends": [
     "prettier",
     "prettier/react"
@@ -27,6 +28,14 @@
     "es6": true
   },
   "rules": {
+    "indent": [
+      "error",
+      2
+    ],
+    "semi": [
+      2,
+      "always"
+    ],
     "constructor-super": "error",
     "dot-notation": [
       "error",
@@ -107,7 +116,7 @@
     "no-sequences": "error",
     "no-shadow": "off",
     "no-shadow-restricted-names": "error",
-    "no-tabs": "error",
+    "no-tabs": "off",
     "no-this-before-super": "error",
     "no-throw-literal": "error",
     "no-undef": "error",

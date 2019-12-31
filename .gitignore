@@ -30,3 +30,8 @@ coverage/
 .tern-port
 
 */yarn.lock
+*env.ts
+
+*.log
+**/run/*
+**/typings/
